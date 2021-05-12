@@ -27,7 +27,7 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     )
 })
 scene.onOverlapTile(SpriteKind.macchina, sprites.vehicle.roadTurn2, function (sprite, location) {
-    Macchina_2.setVelocity(0, 50)
+	
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
@@ -58,7 +58,6 @@ sprites.onOverlap(SpriteKind.Food, SpriteKind.Enemy, function (sprite, otherSpri
     info.changeLifeBy(-1)
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
-    Macchina_2.vx = 50
     animation.runImageAnimation(
     Macchina,
     [img`
@@ -111,7 +110,6 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
 info.onLifeZero(function () {
     game.over(true)
 })
-let Macchina_2: Sprite = null
 let Macchina: Sprite = null
 game.splash("MME LAST RACE ", "premi A per Iniziare  ")
 tiles.setTilemap(tilemap`level1`)
@@ -261,25 +259,6 @@ let mySprite = sprites.create(img`
     f 
     `, SpriteKind.Enemy)
 mySprite.setPosition(150, 13)
-let Sasso1 = sprites.create(img`
-    . . . . . c c b b b . . . . . . 
-    . . . . c b d d d d b . . . . . 
-    . . . . c d d d d d d b b . . . 
-    . . . . c d d d d d d d d b . . 
-    . . . c b b d d d d d d d b . . 
-    . . . c b b d d d d d d d b . . 
-    . c c c c b b b b d d d b b b . 
-    . c d d b c b b b b b b b b d b 
-    c b b d d d b b b b b d d b d b 
-    c c b b d d d d d d d b b b d c 
-    c b c c c b b b b b b b d d c c 
-    c c b b c c c c b d d d b c c b 
-    . c c c c c c c c c c c b b b b 
-    . . c c c c c b b b b b b b c . 
-    . . . . . . c c b b b b c c . . 
-    . . . . . . . . c c c c . . . . 
-    `, SpriteKind.Enemy)
-Sasso1.setPosition(200, 7)
 let Sasso2 = sprites.create(img`
     . . . . . c c b b b . . . . . . 
     . . . . c b d d d d b . . . . . 
@@ -339,7 +318,7 @@ Macchina = sprites.create(img`
 Macchina.setPosition(120, 7)
 controller.moveSprite(Macchina, 100, 100)
 scene.cameraFollowSprite(Macchina)
-Macchina_2 = sprites.create(img`
+let Macchina_2 = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
@@ -359,3 +338,160 @@ Macchina_2 = sprites.create(img`
     `, SpriteKind.macchina)
 Macchina_2.setPosition(120, 23)
 info.setLife(24)
+Macchina_2.vx = 50
+pause(2000)
+animation.runImageAnimation(
+Macchina_2,
+[img`
+    . . . . 2 2 2 2 2 2 2 . . . . . 
+    . . . 2 2 2 2 2 2 2 2 2 . . . . 
+    . . . f f 2 8 8 8 2 f f . . . . 
+    . . . f f 2 8 8 8 2 f f . . . . 
+    . . . f f 2 8 8 8 2 f f . . . . 
+    . . . 2 2 2 2 2 2 2 2 2 . . . . 
+    . . . . 2 2 2 2 2 2 2 . . . . . 
+    . . . . 2 2 2 2 2 2 2 . . . . . 
+    . . . . 2 2 2 2 2 2 2 . . . . . 
+    . . . . 2 8 2 2 2 8 2 . . . . . 
+    . . . . 2 8 8 8 8 8 2 . . . . . 
+    . . . 2 2 2 8 8 8 2 2 2 . . . . 
+    . . . f f 2 2 2 2 2 f f . . . . 
+    . . . f f 2 4 4 4 2 f f . . . . 
+    . . . 2 2 4 4 4 4 4 2 2 . . . . 
+    . . . . 2 2 2 2 2 2 2 . . . . . 
+    `],
+500,
+false
+)
+Macchina_2.vx = 0
+Macchina_2.vy = 50
+pause(4100)
+animation.runImageAnimation(
+Macchina_2,
+[img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . 2 f f 2 . . . . . 2 f f f 2 . 
+    2 2 f f 2 2 2 2 2 2 2 f f f 2 2 
+    2 4 2 2 2 8 8 2 2 2 2 2 2 2 2 2 
+    2 4 4 2 8 8 2 2 2 2 2 8 8 8 2 2 
+    2 4 4 2 8 8 2 2 2 2 2 8 8 8 2 2 
+    2 4 4 2 8 8 2 2 2 2 2 8 8 8 2 2 
+    2 4 2 2 2 8 8 2 2 2 2 2 2 2 2 2 
+    2 2 f f 2 2 2 2 2 2 2 f f f 2 2 
+    . 2 f f 2 . . . . . 2 f f f 2 . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `],
+1200,
+false
+)
+Macchina_2.vy = 0
+Macchina_2.vx = -50
+pause(2000)
+animation.runImageAnimation(
+Macchina_2,
+[img`
+    . . . . . 2 2 2 2 2 2 2 . . . . 
+    . . . . 2 2 4 4 4 4 4 2 2 . . . 
+    . . . . f f 2 4 4 4 2 f f . . . 
+    . . . . f f 2 2 2 2 2 f f . . . 
+    . . . . 2 2 2 8 8 8 2 2 2 . . . 
+    . . . . . 2 8 8 8 8 8 2 . . . . 
+    . . . . . 2 8 2 2 2 8 2 . . . . 
+    . . . . . 2 2 2 2 2 2 2 . . . . 
+    . . . . . 2 2 2 2 2 2 2 . . . . 
+    . . . . . 2 2 2 2 2 2 2 . . . . 
+    . . . . 2 2 2 2 2 2 2 2 2 . . . 
+    . . . . f f 2 8 8 8 2 f f . . . 
+    . . . . f f 2 8 8 8 2 f f . . . 
+    . . . . f f 2 8 8 8 2 f f . . . 
+    . . . . 2 2 2 2 2 2 2 2 2 . . . 
+    . . . . . 2 2 2 2 2 2 2 . . . . 
+    `],
+500,
+false
+)
+Macchina_2.vx = 0
+Macchina_2.vy = -50
+pause(1100)
+animation.runImageAnimation(
+Macchina_2,
+[img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . 2 f f 2 . . . . . 2 f f f 2 . 
+    2 2 f f 2 2 2 2 2 2 2 f f f 2 2 
+    2 4 2 2 2 8 8 2 2 2 2 2 2 2 2 2 
+    2 4 4 2 8 8 2 2 2 2 2 8 8 8 2 2 
+    2 4 4 2 8 8 2 2 2 2 2 8 8 8 2 2 
+    2 4 4 2 8 8 2 2 2 2 2 8 8 8 2 2 
+    2 4 2 2 2 8 8 2 2 2 2 2 2 2 2 2 
+    2 2 f f 2 2 2 2 2 2 2 f f f 2 2 
+    . 2 f f 2 . . . . . 2 f f f 2 . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `],
+500,
+false
+)
+Macchina_2.vy = 0
+Macchina_2.vx = -50
+pause(2000)
+animation.runImageAnimation(
+Macchina_2,
+[img`
+    . . . . . 2 2 2 2 2 2 2 . . . . 
+    . . . . 2 2 4 4 4 4 4 2 2 . . . 
+    . . . . f f 2 4 4 4 2 f f . . . 
+    . . . . f f 2 2 2 2 2 f f . . . 
+    . . . . 2 2 2 8 8 8 2 2 2 . . . 
+    . . . . . 2 8 8 8 8 8 2 . . . . 
+    . . . . . 2 8 2 2 2 8 2 . . . . 
+    . . . . . 2 2 2 2 2 2 2 . . . . 
+    . . . . . 2 2 2 2 2 2 2 . . . . 
+    . . . . . 2 2 2 2 2 2 2 . . . . 
+    . . . . 2 2 2 2 2 2 2 2 2 . . . 
+    . . . . f f 2 8 8 8 2 f f . . . 
+    . . . . f f 2 8 8 8 2 f f . . . 
+    . . . . f f 2 8 8 8 2 f f . . . 
+    . . . . 2 2 2 2 2 2 2 2 2 . . . 
+    . . . . . 2 2 2 2 2 2 2 . . . . 
+    `],
+500,
+false
+)
+Macchina_2.vx = 0
+Macchina_2.vy = -50
+pause(3000)
+animation.runImageAnimation(
+Macchina_2,
+[img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . 2 f f f 2 . . . . . 2 f f 2 . 
+    2 2 f f f 2 2 2 2 2 2 2 f f 2 2 
+    2 2 2 2 2 2 2 2 2 8 8 2 2 2 4 2 
+    2 2 8 8 8 2 2 2 2 2 8 8 2 4 4 2 
+    2 2 8 8 8 2 2 2 2 2 8 8 2 4 4 2 
+    2 2 8 8 8 2 2 2 2 2 8 8 2 4 4 2 
+    2 2 2 2 2 2 2 2 2 8 8 2 2 2 4 2 
+    2 2 f f f 2 2 2 2 2 2 2 f f 2 2 
+    . 2 f f f 2 . . . . . 2 f f 2 . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `],
+500,
+false
+)
+Macchina_2.vy = 0
+Macchina_2.vx = 50
