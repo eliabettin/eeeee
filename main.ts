@@ -1,3 +1,6 @@
+namespace SpriteKind {
+    export const macchina = SpriteKind.create()
+}
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
     Macchina,
@@ -22,6 +25,9 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     500,
     false
     )
+})
+scene.onOverlapTile(SpriteKind.macchina, sprites.vehicle.roadTurn2, function (sprite, location) {
+    Macchina_2.setVelocity(0, 50)
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
@@ -48,7 +54,11 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     false
     )
 })
+sprites.onOverlap(SpriteKind.Food, SpriteKind.Enemy, function (sprite, otherSprite) {
+    info.changeLifeBy(-1)
+})
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
+    Macchina_2.vx = 50
     animation.runImageAnimation(
     Macchina,
     [img`
@@ -98,6 +108,10 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     false
     )
 })
+info.onLifeZero(function () {
+    game.over(true)
+})
+let Macchina_2: Sprite = null
 let Macchina: Sprite = null
 game.splash("MME LAST RACE ", "premi A per Iniziare  ")
 tiles.setTilemap(tilemap`level1`)
@@ -174,6 +188,79 @@ let Start = sprites.create(img`
     ffffffffffffffff
     `, SpriteKind.Player)
 Start.setPosition(150, 13)
+let mySprite = sprites.create(img`
+    . 
+    . 
+    . 
+    . 
+    . 
+    . 
+    . 
+    . 
+    . 
+    . 
+    . 
+    . 
+    . 
+    . 
+    . 
+    . 
+    . 
+    . 
+    . 
+    . 
+    . 
+    . 
+    . 
+    f 
+    c 
+    f 
+    1 
+    f 
+    1 
+    f 
+    1 
+    f 
+    1 
+    f 
+    1 
+    f 
+    1 
+    f 
+    1 
+    f 
+    1 
+    f 
+    1 
+    f 
+    1 
+    f 
+    1 
+    f 
+    1 
+    f 
+    1 
+    f 
+    1 
+    f 
+    1 
+    f 
+    1 
+    f 
+    1 
+    f 
+    1 
+    f 
+    1 
+    f 
+    1 
+    f 
+    1 
+    f 
+    c 
+    f 
+    `, SpriteKind.Enemy)
+mySprite.setPosition(150, 13)
 let Sasso1 = sprites.create(img`
     . . . . . c c b b b . . . . . . 
     . . . . c b d d d d b . . . . . 
@@ -248,11 +335,11 @@ Macchina = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
-    `, SpriteKind.Player)
+    `, SpriteKind.Food)
 Macchina.setPosition(120, 7)
 controller.moveSprite(Macchina, 100, 100)
 scene.cameraFollowSprite(Macchina)
-let Macchina_2 = sprites.create(img`
+Macchina_2 = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
@@ -269,5 +356,6 @@ let Macchina_2 = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
-    `, SpriteKind.Player)
+    `, SpriteKind.macchina)
 Macchina_2.setPosition(120, 23)
+info.setLife(24)
