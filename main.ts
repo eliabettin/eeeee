@@ -1,5 +1,6 @@
 namespace SpriteKind {
     export const macchina = SpriteKind.create()
+    export const Start = SpriteKind.create()
 }
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
@@ -26,8 +27,8 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     false
     )
 })
-scene.onOverlapTile(SpriteKind.macchina, sprites.vehicle.roadTurn2, function (sprite, location) {
-	
+sprites.onOverlap(SpriteKind.Food, SpriteKind.Start, function (sprite, otherSprite) {
+    info.changeLifeBy(-1)
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
@@ -53,9 +54,6 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     500,
     false
     )
-})
-sprites.onOverlap(SpriteKind.Food, SpriteKind.Enemy, function (sprite, otherSprite) {
-    info.changeLifeBy(-1)
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
@@ -257,7 +255,7 @@ let mySprite = sprites.create(img`
     f 
     c 
     f 
-    `, SpriteKind.Enemy)
+    `, SpriteKind.Start)
 mySprite.setPosition(150, 13)
 let Sasso2 = sprites.create(img`
     . . . . . c c b b b . . . . . . 
@@ -339,137 +337,6 @@ let Macchina_2 = sprites.create(img`
 Macchina_2.setPosition(120, 23)
 info.setLife(24)
 Macchina_2.vx = 50
-pause(2000)
-animation.runImageAnimation(
-Macchina_2,
-[img`
-    . . . . 2 2 2 2 2 2 2 . . . . . 
-    . . . 2 2 2 2 2 2 2 2 2 . . . . 
-    . . . f f 2 8 8 8 2 f f . . . . 
-    . . . f f 2 8 8 8 2 f f . . . . 
-    . . . f f 2 8 8 8 2 f f . . . . 
-    . . . 2 2 2 2 2 2 2 2 2 . . . . 
-    . . . . 2 2 2 2 2 2 2 . . . . . 
-    . . . . 2 2 2 2 2 2 2 . . . . . 
-    . . . . 2 2 2 2 2 2 2 . . . . . 
-    . . . . 2 8 2 2 2 8 2 . . . . . 
-    . . . . 2 8 8 8 8 8 2 . . . . . 
-    . . . 2 2 2 8 8 8 2 2 2 . . . . 
-    . . . f f 2 2 2 2 2 f f . . . . 
-    . . . f f 2 4 4 4 2 f f . . . . 
-    . . . 2 2 4 4 4 4 4 2 2 . . . . 
-    . . . . 2 2 2 2 2 2 2 . . . . . 
-    `],
-500,
-false
-)
-Macchina_2.vx = 0
-Macchina_2.vy = 50
-pause(4100)
-animation.runImageAnimation(
-Macchina_2,
-[img`
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . 2 f f 2 . . . . . 2 f f f 2 . 
-    2 2 f f 2 2 2 2 2 2 2 f f f 2 2 
-    2 4 2 2 2 8 8 2 2 2 2 2 2 2 2 2 
-    2 4 4 2 8 8 2 2 2 2 2 8 8 8 2 2 
-    2 4 4 2 8 8 2 2 2 2 2 8 8 8 2 2 
-    2 4 4 2 8 8 2 2 2 2 2 8 8 8 2 2 
-    2 4 2 2 2 8 8 2 2 2 2 2 2 2 2 2 
-    2 2 f f 2 2 2 2 2 2 2 f f f 2 2 
-    . 2 f f 2 . . . . . 2 f f f 2 . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `],
-1200,
-false
-)
-Macchina_2.vy = 0
-Macchina_2.vx = -50
-pause(2000)
-animation.runImageAnimation(
-Macchina_2,
-[img`
-    . . . . . 2 2 2 2 2 2 2 . . . . 
-    . . . . 2 2 4 4 4 4 4 2 2 . . . 
-    . . . . f f 2 4 4 4 2 f f . . . 
-    . . . . f f 2 2 2 2 2 f f . . . 
-    . . . . 2 2 2 8 8 8 2 2 2 . . . 
-    . . . . . 2 8 8 8 8 8 2 . . . . 
-    . . . . . 2 8 2 2 2 8 2 . . . . 
-    . . . . . 2 2 2 2 2 2 2 . . . . 
-    . . . . . 2 2 2 2 2 2 2 . . . . 
-    . . . . . 2 2 2 2 2 2 2 . . . . 
-    . . . . 2 2 2 2 2 2 2 2 2 . . . 
-    . . . . f f 2 8 8 8 2 f f . . . 
-    . . . . f f 2 8 8 8 2 f f . . . 
-    . . . . f f 2 8 8 8 2 f f . . . 
-    . . . . 2 2 2 2 2 2 2 2 2 . . . 
-    . . . . . 2 2 2 2 2 2 2 . . . . 
-    `],
-500,
-false
-)
-Macchina_2.vx = 0
-Macchina_2.vy = -50
-pause(1100)
-animation.runImageAnimation(
-Macchina_2,
-[img`
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . 2 f f 2 . . . . . 2 f f f 2 . 
-    2 2 f f 2 2 2 2 2 2 2 f f f 2 2 
-    2 4 2 2 2 8 8 2 2 2 2 2 2 2 2 2 
-    2 4 4 2 8 8 2 2 2 2 2 8 8 8 2 2 
-    2 4 4 2 8 8 2 2 2 2 2 8 8 8 2 2 
-    2 4 4 2 8 8 2 2 2 2 2 8 8 8 2 2 
-    2 4 2 2 2 8 8 2 2 2 2 2 2 2 2 2 
-    2 2 f f 2 2 2 2 2 2 2 f f f 2 2 
-    . 2 f f 2 . . . . . 2 f f f 2 . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `],
-500,
-false
-)
-Macchina_2.vy = 0
-Macchina_2.vx = -50
-pause(2000)
-animation.runImageAnimation(
-Macchina_2,
-[img`
-    . . . . . 2 2 2 2 2 2 2 . . . . 
-    . . . . 2 2 4 4 4 4 4 2 2 . . . 
-    . . . . f f 2 4 4 4 2 f f . . . 
-    . . . . f f 2 2 2 2 2 f f . . . 
-    . . . . 2 2 2 8 8 8 2 2 2 . . . 
-    . . . . . 2 8 8 8 8 8 2 . . . . 
-    . . . . . 2 8 2 2 2 8 2 . . . . 
-    . . . . . 2 2 2 2 2 2 2 . . . . 
-    . . . . . 2 2 2 2 2 2 2 . . . . 
-    . . . . . 2 2 2 2 2 2 2 . . . . 
-    . . . . 2 2 2 2 2 2 2 2 2 . . . 
-    . . . . f f 2 8 8 8 2 f f . . . 
-    . . . . f f 2 8 8 8 2 f f . . . 
-    . . . . f f 2 8 8 8 2 f f . . . 
-    . . . . 2 2 2 2 2 2 2 2 2 . . . 
-    . . . . . 2 2 2 2 2 2 2 . . . . 
-    `],
-500,
-false
-)
-Macchina_2.vx = 0
-Macchina_2.vy = -50
-pause(3000)
 animation.runImageAnimation(
 Macchina_2,
 [img`
@@ -493,5 +360,4 @@ Macchina_2,
 500,
 false
 )
-Macchina_2.vy = 0
-Macchina_2.vx = 50
+pause(100)
